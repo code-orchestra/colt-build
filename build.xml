@@ -28,7 +28,7 @@
     <mkdir dir="${mac.output.dir}"/>
     <copy todir="${mac.output.dir}">
       <fileset dir="${colt.artifacts.dir}">
-		<exclude name="**/*.jar"/>
+		<exclude name="*.jar"/>
       </fileset>
     </copy>	
     <mkdir dir="${mac.output.dir}/Contents" />
