@@ -15,3 +15,5 @@ build.properties
 ehthumbs.db
 Thumbs.db
 *.class
+
+.idea/workspace.xml

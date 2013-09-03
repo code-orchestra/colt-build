@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="colt-build">
+  
+  <!-- Properties -->
+  <property name="colt.artifacts.dir" value="${basedir}/artifacts" />
+  <property name="colt.output.dir" value="${basedir}/out" />
+  
+  <!-- Property for the platform.  -->
+  <condition property="isMac" value="true">
+      <os family="mac"/>
+  </condition>
+  <condition property="isWindows">
+      <os family="windows" />
+  </condition>	
+
+  <!-- Tasks definitions -->
+  <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="${basedir}/lib/appbundler-1.0.jar" />
+
+  <!-- Targets -->
+  <target name="all" depends="prepare, package.mac" />
+
+  <target name="prepare">
+	<mkdir dir="${colt.output.dir}"/>	
+  </target>
+  
+  <target name="package.mac" if="isMac">
+	<property name="mac.output.dir" value="${colt.output.dir}/mac/COLT.app" />
+    <mkdir dir="${mac.output.dir}"/>
+    <copy todir="${mac.output.dir}">
+      <fileset dir="${colt.artifacts.dir}">
+		<exclude name="**/*.jar"/>
+      </fileset>
+    </copy>	
+    <mkdir dir="${mac.output.dir}/Contents" />
+    <copy todir="${mac.output.dir}/Contents">
+      <fileset dir="${basedir}/packaging/mac/"/>
+    </copy>	 
+    <mkdir dir="${mac.output.dir}/Contents/Java" />    
+	<copy todir="${mac.output.dir}/Contents/Java">
+      <fileset dir="${colt.artifacts.dir}">
+        <include name="*.jar"/>
+      </fileset>
+    </copy>       
+    <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>
+  </target>
+
+</project>
