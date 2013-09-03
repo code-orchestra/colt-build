@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="full-build">
+    <output-path>$PROJECT_DIR$/artifacts</output-path>
+    <root id="root">
+      <element id="artifact" artifact-name="colt-core" />
+      <element id="artifact" artifact-name="colt-as" />
+      <element id="artifact" artifact-name="colt-js" />
+    </root>
+  </artifact>
+</component>
