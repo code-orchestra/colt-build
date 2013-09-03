@@ -1,0 +1,3 @@
+<coltHandlers>
+    <coltHandler id="AS" class="codeOrchestra.colt.as.ASLiveCodingLanguageHandler" classpath="/Users/eliseyev/git/colt-as/out/production/colt-as" />
+</coltHandlers>

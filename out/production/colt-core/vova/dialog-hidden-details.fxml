@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<VBox  minHeight="120" minWidth="540" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+
+    <children>
+
+        <AnchorPane>
+        <children>
+            <ImageView fitHeight="48" fitWidth="48" preserveRatio="true" smooth="false" focusTraversable="true" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0">
+            <image>
+            <Image url="@../codeOrchestra/colt/core/ui/style/images/messages/error-48x48.png" />
+            </image>
+            </ImageView>
+            <Label text="Error while trying start the fcsh process" styleClass="h1" AnchorPane.topAnchor="17" AnchorPane.leftAnchor="69" AnchorPane.rightAnchor="0" />
+        </children>
+        </AnchorPane>
+
+        <AnchorPane>
+        <children>
+            <Button text="Show details" styleClass="btn-show" focusTraversable="true" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="0" />
+            <Button text="OK" styleClass="btn-done" defaultButton="true" focusTraversable="true" prefWidth="67" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="0" />
+        </children>
+        </AnchorPane>
+
+    </children>
+
+    <padding>
+    <Insets top="17" right="30" bottom="30" left="30" />
+    </padding>
+
+    <stylesheets>
+    <URL value="@../codeOrchestra/colt/core/ui/style/main.css" />
+    </stylesheets>
+</VBox>

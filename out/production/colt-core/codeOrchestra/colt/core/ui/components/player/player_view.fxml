@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="94" styleClass="player-box">
+    <children>
+      <HBox spacing="10" prefHeight="58" minHeight="58" maxHeight="58" >
+        <children>
+          <ToggleButton fx:id="pause" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="24" prefWidth="20" styleClass="btn-player-pause" text="Pause">
+            <HBox.margin>
+              <Insets top="7" />
+            </HBox.margin>
+          </ToggleButton>
+          <ToggleButton fx:id="play" contentDisplay="graphic_only" focusTraversable="false" prefHeight="24" prefWidth="20" styleClass="btn-player-play" text="Play">
+            <HBox.margin>
+              <Insets top="7" />
+            </HBox.margin>
+          </ToggleButton>
+          <ToggleButton fx:id="stop" contentDisplay="graphic_only" focusTraversable="false" prefHeight="24" prefWidth="20" styleClass="btn-player-stop" text="Stop">
+            <HBox.margin>
+              <Insets top="7" />
+            </HBox.margin>
+          </ToggleButton>
+          <Separator fx:id="separator" minHeight="-Infinity" orientation="VERTICAL" prefHeight="38" prefWidth="1" />
+          <Button fx:id="add" contentDisplay="graphic_only" focusTraversable="false" prefHeight="24" prefWidth="20" styleClass="btn-player-add" text="Add">
+            <HBox.margin>
+              <Insets top="7" />
+            </HBox.margin>
+          </Button>
+        </children>
+        <padding>
+          <Insets left="3" bottom="11" top="9" />
+        </padding>
+      </HBox>
+    </children>
+  </StackPane>
+</fx:root>

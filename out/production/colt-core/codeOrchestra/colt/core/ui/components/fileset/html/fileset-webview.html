@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Fileset</title>
+
+    <link rel="stylesheet" href="fileset.css" type="text/css" media="screen" charset="utf-8"/>
+    <script src="../../shared/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jquery-textboxlist.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../shared/jquery-resize.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        var textbox
+        var currentValue
+        var inputFromUser = true
+        $(function () {
+            textbox = new $.TextboxList('#form_tags_input', {
+                setClipboard: function (src) {
+                    if (window.app) {
+                        window.app.setClipboard(src)
+                    }
+                },
+                getClipboard: function () {
+                    if (window.app) {
+                        return window.app.getClipboard()
+                    }
+                    return "hello"
+                }});
+
+            var fireUpdate = function () {
+                if(getFiles() != currentValue){
+                    if(inputFromUser){
+                        currentValue = getFiles()
+                        alert("command:update")
+                    }
+                }
+            }
+
+            textbox.addEvent("bitBoxAdd", fireUpdate)
+            textbox.addEvent("bitBoxRemove", fireUpdate)
+
+            $("body").resize(function(){
+                if(window.app){
+                    window.app.resize($("body").height())
+                }
+            })
+
+            $("body").bind({
+                ondrop : function(){
+                    alert("drop")
+                }
+            })
+        })
+
+        function requestFocus(){
+            $(window).focus()
+            textbox.requestFocus()
+        }
+
+        function addFile(str) {
+            inputFromUser = false
+            var result = textbox.add(str);
+            inputFromUser = true
+            return  result
+        }
+
+        function setFiles(str) {
+            inputFromUser = false
+            var newValues = textbox.setNewValues(str);
+            inputFromUser = true
+            return  newValues
+        }
+
+
+        function getFiles() {
+            return textbox.getText()
+        }
+
+        function fileNotExists(file) {
+            // todo: mark file as
+        }
+
+
+
+
+    </script>
+
+    <style type="text/css">
+        HTML {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%; }
+
+        BUTTON, INPUT, SELECT, TEXTAREA {
+            font-size: 100%;
+            line-height: inherit; }
+
+        BUTTON, INPUT, SELECT {
+            text-transform: none; }
+
+        BUTTON::-moz-focus-inner, INPUT::-moz-focus-inner {
+            border: 0;
+            padding: 0; }
+
+        BUTTON {
+            cursor: pointer; }
+
+        TEXTAREA {
+            overflow: auto;
+            resize: vertical;
+            vertical-align: top; }
+
+        BODY {
+            margin: 0;
+            overflow: hidden; }
+
+        .textboxlist, INPUT[type="text"], TEXTAREA {
+            font: 13px/18px 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', 'Bitstream Vera Sans', 'Liberation Sans', Arial, sans-serif; }
+
+        .textboxlist-bits {
+            background: #fff;
+            -webkit-box-shadow: inset 0 1px 0 #f0f0f0;
+            box-shadow: inset 0 1px 0 #f0f0f0;
+            padding: 1px 4px; }
+
+        .textboxlist-bit { margin: 0 4px 0 0; }
+
+        .textboxlist-bit-box { margin-top: 3px; }
+
+        .textboxlist-bit INPUT[type="text"], .textboxlist-bit TEXTAREA {
+            background: transparent;
+            border: 0 none transparent;
+            margin: 0;
+            vertical-align: baseline;
+            width: 100%;
+            padding: 0;
+            outline: none;
+            min-height: 24px; }
+
+        TEXTAREA { resize: vertical; }
+
+        .form_tags { margin: 0; }
+
+        .textboxlist { width: 100%; }
+
+    </style>
+</head>
+<body>
+<form accept-charset="utf-8">
+    <div class="form_tags">
+        <input type="text" name="test2" value="" id="form_tags_input"/></div>
+</form>
+</body>
+</html>
