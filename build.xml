@@ -4,6 +4,7 @@
   <!-- Properties -->
   <property name="colt.artifacts.dir" value="${basedir}/artifacts" />
   <property name="colt.output.dir" value="${basedir}/out" />
+  <property name="proguard.config.abs.path" location="obfuscation.pro"/>	  
   
   <!-- Property for the platform.  -->
   <condition property="isMac" value="true">
@@ -17,10 +18,20 @@
   <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="${basedir}/lib/appbundler-1.0.jar" />
 
   <!-- Targets -->
-  <target name="all" depends="prepare, package.mac" />
+  <target name="all" depends="prepare, obfuscate.mac, obfuscate.win, copy.examples, package.mac" />
 
   <target name="prepare">
 	<mkdir dir="${colt.output.dir}"/>	
+  </target>
+  
+  <target name="copy.examples">
+	<mkdir dir="${colt.artifacts.dir}/projects" />	 
+	<copy todir="${colt.artifacts.dir}/projects">
+	  <fileset dir="../livecoding_examples">
+		<exclude name=".git/**"/>
+		<exclude name=".gitignore"/>			
+	  </fileset>
+	</copy>
   </target>
   
   <target name="package.mac" if="isMac">
@@ -43,5 +54,19 @@
     </copy>       
     <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>
   </target>
+  
+  <target name="obfuscate.mac" if="isMac">
+	<exec executable="${proguard.home}/bin/proguard.sh">
+	  <arg value="@${proguard.config.abs.path}"/>
+	  <arg value="-forceprocessing"/>
+	</exec>
+  </target>
+	
+  <target name="obfuscate.win" if="isWindows">
+	<exec executable="${proguard.home}/bin/proguard.bat">
+	  <arg value="@${proguard.config.abs.path}"/>
+	  <arg value="-forceprocessing"/>
+	</exec>
+  </target>	
 
 </project>
