@@ -5,26 +5,12 @@
       <options enabled="true">
         <file>file://$PROJECT_DIR$/build.xml</file>
         <target>all</target>
-        <build-properties>
-          <build-property name="proguard.home" value="$USER_HOME$/Downloads/proguard4.9" />
-        </build-properties>
       </options>
     </properties>
     <root id="root">
-      <element id="directory" name="lib">
-        <element id="file-copy" path="$PROJECT_DIR$/../colt-as/lib/colt.swc" />
-        <element id="file-copy" path="$PROJECT_DIR$/../colt-js/lib/live.js" />
-      </element>
-      <element id="directory" name="templates">
-        <element id="dir-copy" path="$PROJECT_DIR$/../colt-as/templates" />
-      </element>
-      <element id="file-copy" path="$PROJECT_DIR$/../colt-as/crossdomain.xml" />
       <element id="artifact" artifact-name="colt-as" />
       <element id="artifact" artifact-name="colt-core" />
       <element id="artifact" artifact-name="colt-js" />
-      <element id="directory" name="flex_sdk">
-        <element id="dir-copy" path="$PROJECT_DIR$/../colt-as/flex_sdk" />
-      </element>
     </root>
   </artifact>
 </component>

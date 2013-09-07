@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="colt-build">
+<project name="colt-build" default="all">
   
   <!-- Properties -->
+  <property file="build.properties"/>
+
+  <property name="colt.core.dir" value="${basedir}/../colt-core" />
+  <property name="colt.as.dir" value="${basedir}/../colt-as" />
+  <property name="colt.js.dir" value="${basedir}/../colt-js" />    
+
   <property name="colt.artifacts.dir" value="${basedir}/artifacts" />
   <property name="colt.output.dir" value="${basedir}/out" />
+  <property name="groovy.lib.dir" value="${groovy.home}/lib" />  
   <property name="proguard.config.abs.path" location="obfuscation.pro"/>	  
   
   <!-- Property for the platform.  -->
@@ -34,14 +41,31 @@
 	</copy>
   </target>
   
+  <target name="package.common">
+	<property name="package.output.dir" value="${colt.output.dir}/mac/COLT.app" />
+    <mkdir dir="${package.output.dir}"/>    
+    <copy todir="${package.output.dir}/flex_sdk">
+      <fileset dir="${colt.as.dir}/flex_sdk"/>
+    </copy>
+    <copy file="${colt.as.dir}/lib/colt.swc" todir="${package.output.dir}/lib"/>    
+    <copy file="${colt.js.dir}/lib/live.js" todir="${package.output.dir}/lib"/>        
+	<copy todir="${package.output.dir}/projects">
+	  <fileset dir="../livecoding_examples">
+		<exclude name=".git/**"/>
+		<exclude name=".gitignore"/>			
+	  </fileset>
+	</copy>    
+    <copy todir="${package.output.dir}/templates">
+      <fileset dir="${colt.as.dir}/templates"/>
+    </copy>
+    <copy file="${colt.as.dir}/crossdomain.xml" todir="${package.output.dir}"/>        
+  </target>
+  
   <target name="package.mac" if="isMac">
 	<property name="mac.output.dir" value="${colt.output.dir}/mac/COLT.app" />
-    <mkdir dir="${mac.output.dir}"/>
-    <copy todir="${mac.output.dir}">
-      <fileset dir="${colt.artifacts.dir}">
-		<exclude name="*.jar"/>
-      </fileset>
-    </copy>	
+	<antcall target="package.common">
+	    <param name="package.output.dir" value="${mac.output.dir}"/>
+	</antcall>        
     <mkdir dir="${mac.output.dir}/Contents" />
     <copy todir="${mac.output.dir}/Contents">
       <fileset dir="${basedir}/packaging/mac/"/>
@@ -52,6 +76,11 @@
         <include name="*.jar"/>
       </fileset>
     </copy>       
+	<copy todir="${mac.output.dir}/Contents/Java">
+      <fileset dir="${groovy.lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+    </copy>           
     <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>
   </target>
   
