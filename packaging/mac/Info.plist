@@ -31,8 +31,7 @@
 <key>JVMOptions</key>
 <array>
   <string>-Dcolt.base.dir=$APP_PACKAGE</string>
-  <string>-Dcolt.handlers=AS:codeOrchestra.colt.as.ASLiveCodingLanguageHandler</string>  
-  <string>-Dcolt.handlers=JS:codeOrchestra.colt.js.JSLiveCodingLanguageHandler</string>    
+  <string>-Dcolt.handlers=AS:codeOrchestra.colt.as.ASLiveCodingLanguageHandler,JS:codeOrchestra.colt.js.JSLiveCodingLanguageHandler</string>  
 </array>
 <key>JVMArguments</key>
 <array>
