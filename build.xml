@@ -18,7 +18,7 @@
   <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="${basedir}/lib/appbundler-1.0.jar" />
 
   <!-- Targets -->
-  <target name="all" depends="prepare, obfuscate.mac, obfuscate.win, copy.examples, package.mac" />
+  <target name="all" depends="prepare, copy.examples, package.mac" />
 
   <target name="prepare">
 	<mkdir dir="${colt.output.dir}"/>	
