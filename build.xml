@@ -23,9 +23,10 @@
 
   <!-- Tasks definitions -->
   <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="${basedir}/lib/appbundler-1.0.jar" />
+  <taskdef name="jsmoothgen" classname="net.charabia.jsmoothgen.ant.JSmoothGen" classpath="${basedir}/lib/jsmoothgen-ant.jar"/>
 
   <!-- Targets -->
-  <target name="all" depends="prepare, copy.examples, package.mac" />
+  <target name="all" depends="prepare, copy.examples, package.mac, package.win" />
 
   <target name="prepare">
 	<mkdir dir="${colt.output.dir}"/>	
@@ -82,6 +83,32 @@
       </fileset>
     </copy>           
     <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>
+  </target>
+  
+  <target name="package.win" if="isWindows">
+	<property name="win.output.dir" value="${colt.output.dir}/win" />
+	<antcall target="package.common">
+	  <param name="package.output.dir" value="${win.output.dir}"/>
+	</antcall> 
+    <mkdir dir="${win.output.dir}/jre" />
+    <copy todir="${win.output.dir}/jre">
+	  <fileset dir="${jre.path}"/>
+    </copy>	
+    <mkdir dir="${win.output.dir}/lib" />
+	<copy todir="${win.output.dir}">
+      <fileset dir="${basedir}/packaging/win/"/>
+    </copy>	 
+	<copy todir="${win.output.dir}/lib">
+      <fileset dir="${colt.artifacts.dir}">
+        <include name="*.jar"/>
+      </fileset>
+    </copy>       
+	<copy todir="${win.output.dir}/lib">
+      <fileset dir="${groovy.lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+    </copy>       
+    <jsmoothgen project="${win.output.dir}/colt.jsmooth" skeletonroot="${jsmooth.home.path}/skeletons" />    
   </target>
   
   <target name="obfuscate.mac" if="isMac">
