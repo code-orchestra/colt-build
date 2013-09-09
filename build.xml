@@ -23,7 +23,6 @@
 
   <!-- Tasks definitions -->
   <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="${basedir}/lib/appbundler-1.0.jar" />
-  <taskdef name="jsmoothgen" classname="net.charabia.jsmoothgen.ant.JSmoothGen" classpath="${basedir}/lib/jsmoothgen-ant.jar"/>
 
   <!-- Targets -->
   <target name="all" depends="prepare, copy.examples, package.mac, package.win" />
@@ -108,7 +107,6 @@
         <include name="*.jar"/>
       </fileset>
     </copy>       
-    <jsmoothgen project="${win.output.dir}/colt.jsmooth" skeletonroot="${jsmooth.home.path}/skeletons" />    
   </target>
   
   <target name="obfuscate.mac" if="isMac">
