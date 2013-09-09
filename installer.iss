@@ -52,7 +52,6 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: 
 Root: HKCR; Subkey: ".colt"; ValueType: string; ValueName: ""; ValueData: "COLTProject"; Flags: uninsdeletevalue
 Root: HKCR; Subkey: "COLTProject"; ValueType: string; ValueName: ""; ValueData: "COLT Project File"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "COLTProject\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
-Root: HKCR; Subkey: "COLTProject\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""--launcher.openFile"" ""%1"""
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
