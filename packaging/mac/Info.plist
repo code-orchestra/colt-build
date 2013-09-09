@@ -24,6 +24,23 @@
 <string>codeOrchestra.colt</string>
 <key>CFBundleVersion</key>
 <string>1</string>
+<key>CFBundleDocumentTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleTypeExtensions</key>
+        <array>
+          <string>colt</string>
+        </array>
+        <key>CFBundleTypeIconFile</key>
+        <string>colticon.icns</string>
+        <key>CFBundleTypeName</key>
+        <string>Code Orchestra</string>
+        <key>CFBundleTypeRole</key>
+        <string>None</string>
+		<key>LSIsAppleDefaultForType</key>
+ 	    <false/>        
+      </dict>
+    </array>
 <key>NSHumanReadableCopyright</key>
 <string></string>
 <key>JVMMainClassName</key>
