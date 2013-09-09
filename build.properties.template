@@ -2,3 +2,4 @@ proguard.home=/Users/eliseyev/Downloads/proguard4.9
 groovy.home=/Users/eliseyev/Downloads/groovy-2.1.6
 jre.path=C:\\Program Files (x86)\\Java\\jre8
 jsmooth.home.path=C:\\Programs\\JSmooth
+mac.dmg.output=/Users/eliseyev/TMP/COLT

@@ -82,6 +82,10 @@
       </fileset>
     </copy>           
     <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>
+	<mkdir dir="${mac.dmg.output}/COLT.app"/> 
+    <copy todir="${mac.dmg.output}/COLT.app">
+      <fileset dir="${mac.output.dir}"/>
+    </copy>    
   </target>
   
   <target name="package.win" if="isWindows">
@@ -106,7 +110,7 @@
       <fileset dir="${groovy.lib.dir}">
         <include name="*.jar"/>
       </fileset>
-    </copy>       
+    </copy>
   </target>
   
   <target name="obfuscate.mac" if="isMac">

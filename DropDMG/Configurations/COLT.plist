@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<dict>
+		<key>identifier</key>
+		<string>Configuration.6E34A8E2-FCF6-4088-9B40-3570DD41AAC4</string>
+		<key>options</key>
+		<dict>
+			<key>customIcon</key>
+			<integer>1</integer>
+			<key>encryption</key>
+			<integer>0</integer>
+			<key>layoutIdentifier</key>
+			<string>Layout.3822AE98-1C16-4A65-9A5D-F22DAF82331B</string>
+			<key>segmentSize</key>
+			<integer>100</integer>
+		</dict>
+	</dict>
+	<key>documentCreator</key>
+	<string>DropDMG 3.2.2</string>
+	<key>documentType</key>
+	<string>com.c-command.DropDMG.Configuration</string>
+	<key>formatVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
