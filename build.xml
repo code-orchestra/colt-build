@@ -47,14 +47,11 @@
     <copy todir="${package.output.dir}/flex_sdk">
       <fileset dir="${colt.as.dir}/flex_sdk"/>
     </copy>
+    <copy todir="${package.output.dir}/gradle">
+      <fileset dir="${gradle.home}"/>
+    </copy>    
     <copy file="${colt.as.dir}/lib/colt.swc" todir="${package.output.dir}/lib"/>    
-    <copy file="${colt.js.dir}/lib/live.js" todir="${package.output.dir}/lib"/>        
-	<copy todir="${package.output.dir}/projects">
-	  <fileset dir="../livecoding_examples">
-		<exclude name=".git/**"/>
-		<exclude name=".gitignore"/>			
-	  </fileset>
-	</copy>    
+    <copy file="${colt.js.dir}/lib/live.js" todir="${package.output.dir}/lib"/>        	
     <copy todir="${package.output.dir}/templates">
       <fileset dir="${colt.as.dir}/templates"/>
     </copy>
@@ -82,10 +79,17 @@
       </fileset>
     </copy>           
     <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>
-	<mkdir dir="${mac.dmg.output}/COLT.app"/> 
-    <copy todir="${mac.dmg.output}/COLT.app">
+	<mkdir dir="${mac.dmg.output}/COLT/COLT.app"/> 
+    <copy todir="${mac.dmg.output}/COLT/COLT.app">
       <fileset dir="${mac.output.dir}"/>
     </copy>    
+	<mkdir dir="${mac.dmg.output}/COLT/projects"/>     
+	<copy todir="${mac.dmg.output}/COLT/projects">
+	  <fileset dir="../livecoding_examples">
+		<exclude name=".git/**"/>
+		<exclude name=".gitignore"/>			
+	  </fileset>
+	</copy>        
   </target>
   
   <target name="package.win" if="isWindows">
@@ -93,6 +97,13 @@
 	<antcall target="package.common">
 	  <param name="package.output.dir" value="${win.output.dir}"/>
 	</antcall> 
+    <mkdir dir="${win.output.dir}/projects" />
+	<copy todir="${win.output.dir}/projects">
+	  <fileset dir="../livecoding_examples">
+		<exclude name=".git/**"/>
+		<exclude name=".gitignore"/>			
+	  </fileset>
+	</copy>    
     <mkdir dir="${win.output.dir}/jre" />
     <copy todir="${win.output.dir}/jre">
 	  <fileset dir="${jre.path}"/>
