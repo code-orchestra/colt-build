@@ -52,6 +52,7 @@
     </copy>    
     <copy file="${colt.as.dir}/lib/colt.swc" todir="${package.output.dir}/lib"/>    
     <copy file="${colt.js.dir}/lib/live.js" todir="${package.output.dir}/lib"/>        	
+    <copy file="${colt.js.dir}/lib/colt.js" todir="${package.output.dir}/lib"/>        	
     <copy todir="${package.output.dir}/templates">
       <fileset dir="${colt.as.dir}/templates"/>
     </copy>
