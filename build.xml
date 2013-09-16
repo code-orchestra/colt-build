@@ -59,7 +59,7 @@
   </target>
   
   <target name="package.mac" if="isMac">
-	<property name="mac.output.dir" value="${colt.output.dir}/mac/COLT.app" />
+	<property name="mac.output.dir" value="${colt.output.dir}/mac/COLT/COLT/COLT.app" />
 	<antcall target="package.common">
 	    <param name="package.output.dir" value="${mac.output.dir}"/>
 	</antcall>        
@@ -83,8 +83,8 @@
     <copy todir="${mac.dmg.output}/COLT/COLT.app">
       <fileset dir="${mac.output.dir}"/>
     </copy>    
-	<mkdir dir="${mac.dmg.output}/COLT/projects"/>     
-	<copy todir="${mac.dmg.output}/COLT/projects">
+	<mkdir dir="${colt.output.dir}/mac/COLT/COLT/projects"/>     
+	<copy todir="${colt.output.dir}/mac/COLT/COLT/projects">
 	  <fileset dir="../livecoding_examples">
 		<exclude name=".git/**"/>
 		<exclude name=".gitignore"/>			
