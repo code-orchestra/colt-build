@@ -43,6 +43,8 @@
     </array>
 <key>NSHumanReadableCopyright</key>
 <string></string>
+<key>JVMRuntime</key>
+<string>jdk1.8.0.jdk</string>
 <key>JVMMainClassName</key>
 <string>codeOrchestra.colt.core.ui.ColtApplication</string>
 <key>JVMOptions</key>

@@ -17,3 +17,4 @@ Thumbs.db
 *.class
 
 .idea/workspace.xml
+packaging/mac/PlugIns/jdk1.8.0.jdk/*
