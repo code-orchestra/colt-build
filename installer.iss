@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COLT"
-#define MyAppVersion "1.2"
+#define MyAppVersion "1.2.1"
 #define MyAppPublisher "Code Orchestra"
 #define MyAppURL "http://www.codeorchestra.com/"
 #define MyAppExeName "colt.exe"
