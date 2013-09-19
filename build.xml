@@ -79,11 +79,7 @@
         <include name="*.jar"/>
       </fileset>
     </copy>           
-    <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>
-	<mkdir dir="${mac.dmg.output}/COLT/COLT.app"/> 
-    <copy todir="${mac.dmg.output}/COLT/COLT.app">
-      <fileset dir="${mac.output.dir}"/>
-    </copy>    
+    <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>  
 	<mkdir dir="${colt.output.dir}/mac/COLT/COLT/projects"/>     
 	<copy todir="${colt.output.dir}/mac/COLT/COLT/projects">
 	  <fileset dir="../livecoding_examples">
