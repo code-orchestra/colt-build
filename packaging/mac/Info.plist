@@ -51,6 +51,7 @@
 <string>codeOrchestra.colt.core.ui.ColtApplication</string>
 <key>JVMOptions</key>
 <array>
+  <string>-Dfile.encoding=UTF-8</string>
   <string>-Dcolt.base.dir=$APP_PACKAGE</string>
   <string>-Dcolt.handlers=AS:codeOrchestra.colt.as.ASLiveCodingLanguageHandler,JS:codeOrchestra.colt.js.JSLiveCodingLanguageHandler</string>  
 </array>
