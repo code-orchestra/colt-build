@@ -19,6 +19,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/jetty-6.1.26.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/jetty-util-6.1.26.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/jgoogleanalyticstracker.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/jmdns.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/jsonrpc4j-0.28.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/log4j-api-2.0-beta8.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/log4j-core-2.0-beta8.jar" path-in-jar="/" />
