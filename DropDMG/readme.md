@@ -1,2 +1,2 @@
 put folders to
-/Users/<username>/Library/Application Support/DropDMG/Configurations/
+/Users/{username}/Library/Application Support/DropDMG/
