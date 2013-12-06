@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COLT"
-#define MyAppVersion "1.2.4"
+#define MyAppVersion "1.2.5"
 #define MyAppPublisher "Code Orchestra"
 #define MyAppURL "http://www.codeorchestra.com/"
 #define MyAppExeName "colt.exe"
@@ -22,7 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 OutputDir=C:\Users\Eliseyev\Desktop
-OutputBaseFilename=setup2
+OutputBaseFilename=COLT-install
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes
