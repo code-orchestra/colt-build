@@ -43,13 +43,16 @@
   
   <target name="package.common">
 	<property name="package.output.dir" value="${colt.output.dir}/mac/COLT.app" />
-    <mkdir dir="${package.output.dir}"/>    
-    <copy todir="${package.output.dir}/flex_sdk">
-      <fileset dir="${colt.as.dir}/flex_sdk"/>
-    </copy>
-    <copy todir="${package.output.dir}/gradle">
-      <fileset dir="${gradle.home}"/>
-    </copy>    
+    <mkdir dir="${package.output.dir}"/>
+    <mkdir dir="${package.output.dir}/flex_sdk"/>
+    <!--flex_sdk will download-->
+    <!--<copy todir="${package.output.dir}/flex_sdk">-->
+      <!--<fileset dir="${colt.as.dir}/flex_sdk"/>-->
+    <!--</copy>-->
+    <!--gradle will download-->
+    <!--<copy todir="${package.output.dir}/gradle">-->
+      <!--<fileset dir="${gradle.home}"/>-->
+    <!--</copy>-->
     <copy file="${colt.as.dir}/lib/colt.swc" todir="${package.output.dir}/lib"/>    
     <copy file="${colt.js.dir}/lib/live.js" todir="${package.output.dir}/lib"/>        	
     <copy file="${colt.js.dir}/lib/colt.js" todir="${package.output.dir}/lib"/>     
