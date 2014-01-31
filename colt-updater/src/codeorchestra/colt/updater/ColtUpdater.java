@@ -30,7 +30,7 @@ class ColtUpdater {
             File[] files = updates.listFiles();
             if (files != null) {
                 for (File f : files) {
-                    if (f.getName().contains(".jar")) {
+                    if (f.getName().endsWith(".jar")) {
                         try {
                             if (checkFileMD5(f)) {
                                 copyFile(f, new File(jarDir.getPath(), f.getName()));
@@ -73,7 +73,9 @@ class ColtUpdater {
     public static boolean checkFileMD5(File file) {
         File md = new File(file.getParentFile(), file.getName() + ".MD5");
             try {
-                String md_str = new BufferedReader(new FileReader(md)).readLine();
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(md));
+                String md_str = bufferedReader.readLine();
+                bufferedReader.close();
                 md.delete();
                 String fileDigestMD5 = getFileDigestMD5(file);
                 return md_str.equals(fileDigestMD5);
@@ -99,6 +101,7 @@ class ColtUpdater {
         while ((nread = fis.read(dataBytes)) != -1) {
             md.update(dataBytes, 0, nread);
         }
+        fis.close();
 
         byte[] mdbytes = md.digest();
 
