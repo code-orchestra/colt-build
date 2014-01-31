@@ -135,7 +135,8 @@ class ColtUpdater {
         coltBaseDirProp = coltBaseDirProp != null ? coltBaseDirProp : "";
 
         if (coltBaseDirProp.isEmpty()) {
-            File file = new File(ColtUpdater.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+            String path = ColtUpdater.class.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll("%20", " ");
+            File file = new File(path);
             while (!new File(file, "flex_sdk").exists()) {
                 file = file.getParentFile();
             }
