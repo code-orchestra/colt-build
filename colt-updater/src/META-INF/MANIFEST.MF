@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Class-Path: ant-1.8.4.jar ant-antlr-1.8.4.jar ant-junit-1.8.4.jar ant-
+ launcher-1.8.4.jar antlr-2.7.7.jar asm-4.0.jar asm-analysis-4.0.jar a
+ sm-commons-4.0.jar asm-tree-4.0.jar asm-util-4.0.jar bsf-2.4.0.jar co
+ mmons-cli-1.2.jar commons-logging-1.1.1.jar gpars-1.0.0.jar groovy-2.
+ 1.6.jar groovy-ant-2.1.6.jar groovy-bsf-2.1.6.jar groovy-console-2.1.
+ 6.jar groovy-docgenerator-2.1.6.jar groovy-groovydoc-2.1.6.jar groovy
+ -groovysh-2.1.6.jar groovy-jmx-2.1.6.jar groovy-json-2.1.6.jar groovy
+ -jsr223-2.1.6.jar groovy-servlet-2.1.6.jar groovy-sql-2.1.6.jar groov
+ y-swing-2.1.6.jar groovy-templates-2.1.6.jar groovy-test-2.1.6.jar gr
+ oovy-testng-2.1.6.jar groovy-xml-2.1.6.jar hamcrest-core-1.3.jar ivy-
+ 2.2.0.jar jansi-1.6.jar jcommander-1.27.jar jline-1.0.jar jsp-api-2.0
+ .jar jsr166y-1.7.0.jar junit-4.11.jar qdox-1.12.1.jar servlet-api-2.4
+ .jar testng-6.8.jar xmlpull-1.1.3.1.jar xstream-1.4.2.jar
+Main-Class: codeorchestra.colt.updater.ColtUpdater
+
