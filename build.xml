@@ -43,7 +43,12 @@
   
   <target name="package.common">
 	<property name="package.output.dir" value="${colt.output.dir}/mac/COLT.app" />
-    <mkdir dir="${package.output.dir}"/>
+      <checksum>
+          <fileset dir="${colt.artifacts.dir}">
+              <include name="*.jar"/>
+          </fileset>
+      </checksum>
+      <mkdir dir="${package.output.dir}"/>
     <mkdir dir="${package.output.dir}/flex_sdk"/>
     <!--flex_sdk will download-->
     <!--<copy todir="${package.output.dir}/flex_sdk">-->

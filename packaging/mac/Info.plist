@@ -48,9 +48,9 @@
 <key>JVMRuntime</key>
 <string>jdk1.8.0.jdk</string>
 <key>JVMMainClassName</key>
-<string>codeOrchestra.colt.core.ui.ColtApplication</string>
+<string>codeorchestra.colt.updater.ColtUpdater</string>
 <key>JVMMainJarName</key>
-<string>colt-core.jar</string>
+<string>colt-updater.jar</string>
 <key>JVMOptions</key>
 <array>
   <string>-Dfile.encoding=UTF-8</string>

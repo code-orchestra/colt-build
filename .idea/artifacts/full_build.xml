@@ -11,6 +11,7 @@
       <element id="artifact" artifact-name="colt-as" />
       <element id="artifact" artifact-name="colt-core" />
       <element id="artifact" artifact-name="colt-js" />
+      <element id="artifact" artifact-name="colt-updater:jar" />
     </root>
   </artifact>
 </component>
