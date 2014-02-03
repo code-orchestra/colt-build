@@ -19,13 +19,16 @@
   </condition>
   <condition property="isWindows">
       <os family="windows" />
-  </condition>	
+  </condition>
+  <condition property="isLinux">
+      <os family="unix" />
+  </condition>
 
   <!-- Tasks definitions -->
   <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="${basedir}/lib/appbundler-1.0.jar" />
 
   <!-- Targets -->
-  <target name="all" depends="prepare, copy.examples, package.mac, package.win" />
+  <target name="all" depends="prepare, copy.examples, package.mac, package.win, package.linux" />
 
   <target name="prepare">
 	<mkdir dir="${colt.output.dir}"/>	
@@ -133,6 +136,35 @@
         <include name="*.jar"/>
       </fileset>
     </copy>
+  </target>
+
+  <target name="package.linux" if="isLinux">
+      <property name="linux.output.dir" value="${colt.output.dir}/linux" />
+      <antcall target="package.common">
+          <param name="package.output.dir" value="${linux.output.dir}"/>
+      </antcall>
+      <mkdir dir="${linux.output.dir}/projects" />
+      <copy todir="${linux.output.dir}/projects">
+          <fileset dir="../livecoding_examples">
+              <exclude name=".git/**"/>
+              <exclude name=".gitignore"/>
+          </fileset>
+      </copy>
+      <mkdir dir="${linux.output.dir}/jre" />
+      <copy todir="${linux.output.dir}/jre">
+          <fileset dir="${jre.path}"/>
+      </copy>
+      <mkdir dir="${linux.output.dir}/lib" />
+      <copy todir="${linux.output.dir}/lib">
+          <fileset dir="${colt.artifacts.dir}">
+              <include name="*.jar"/>
+          </fileset>
+      </copy>
+      <copy todir="${linux.output.dir}/lib">
+          <fileset dir="${groovy.lib.dir}">
+              <include name="*.jar"/>
+          </fileset>
+      </copy>
   </target>
   
   <target name="obfuscate.mac" if="isMac">
