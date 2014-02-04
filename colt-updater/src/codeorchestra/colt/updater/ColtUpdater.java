@@ -22,8 +22,10 @@ class ColtUpdater {
         File jarDir;
         if (SystemInfo.isMac) {
             jarDir = new File(baseDir, "Contents/Java");
-        } else {
+        } else if (SystemInfo.isWindows){
             jarDir = new File(baseDir, "lib");
+        } else {
+            jarDir = new File(baseDir, "app");
         }
         File updates = new File(baseDir.getPath() + File.separator + "updates");
         if (updates.exists()) {
@@ -162,7 +164,7 @@ class ColtUpdater {
                     e.printStackTrace();
                 }
             }
-        } else if (SystemInfo.isWindows) {
+        } else if (SystemInfo.isWindows || SystemInfo.isLinux) {
             File executable = getApplicationExecutable();
             if (executable != null && executable.exists()) {
                 startExecutable(executable.getPath());
@@ -178,6 +180,9 @@ class ColtUpdater {
             return executable.exists() ? executable : null;
         } else if (SystemInfo.isWindows) {
             File executable = new File(getApplicationBaseDir(), "colt.exe");
+            return executable.exists() ? executable : null;
+        } else if (SystemInfo.isLinux) {
+            File executable = new File(getApplicationBaseDir(), "colt");
             return executable.exists() ? executable : null;
         }
 

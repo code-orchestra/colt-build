@@ -148,25 +148,31 @@
           <fileset dir="../livecoding_examples">
               <exclude name=".git/**"/>
               <exclude name=".gitignore"/>
+              <exclude name="as/**"/>
           </fileset>
       </copy>
-      <mkdir dir="${linux.output.dir}/jre" />
-      <copy todir="${linux.output.dir}/jre">
+      <copy todir="${linux.output.dir}">
+          <fileset dir="${basedir}/packaging/linux/"/>
+      </copy>
+      <chmod file="${linux.output.dir}/colt" perm="+x"/>
+      <mkdir dir="${linux.output.dir}/runtime/jre" />
+      <copy todir="${linux.output.dir}/runtime/jre">
           <fileset dir="${jre.path}"/>
       </copy>
-      <mkdir dir="${linux.output.dir}/lib" />
-      <copy todir="${linux.output.dir}/lib">
+      <mkdir dir="${linux.output.dir}/app" />
+      <copy todir="${linux.output.dir}/app">
           <fileset dir="${colt.artifacts.dir}">
               <include name="*.jar"/>
+              <exclude name="colt-as.jar"/>
           </fileset>
       </copy>
-      <copy todir="${linux.output.dir}/lib">
+      <copy todir="${linux.output.dir}/app">
           <fileset dir="${groovy.lib.dir}">
               <include name="*.jar"/>
           </fileset>
       </copy>
   </target>
-  
+
   <target name="obfuscate.mac" if="isMac">
 	<exec executable="${proguard.home}/bin/proguard.sh">
 	  <arg value="@${proguard.config.abs.path}"/>
