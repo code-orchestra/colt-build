@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COLT"
-#define MyAppVersion "1.2.6"
+#define MyAppVersion "1.3.0"
 #define MyAppPublisher "Code Orchestra"
 #define MyAppURL "http://www.codeorchestra.com/"
 #define MyAppExeName "colt.exe"
@@ -21,7 +21,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-OutputDir=C:\Users\Eliseyev\Desktop
+OutputDir=C:\Users\CodeOrchestra\Desktop
 OutputBaseFilename=COLT-install
 Compression=lzma
 SolidCompression=yes
@@ -37,8 +37,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Type: filesandordirs; Name: "{app}" 
 
 [Files]
-Source: "C:\Users\Eliseyev\Documents\GitHub\colt-build\out\win\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Eliseyev\Documents\GitHub\colt-build\out\win\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\CodeOrchestra\IdeaProjects\colt-build\out\win\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\CodeOrchestra\IdeaProjects\colt-build\out\win\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Dirs]  
@@ -61,15 +61,15 @@ procedure CurStepChanged(CurStep: TSetupStep);
 var 
   ResultCode: Integer;
 begin
-  if CurStep = ssPostInstall then begin
-    SaveStringToFile(ExpandConstant('{app}\flex_sdk\bin\placement.txt'), 'Root="' + ExpandConstant('{app}\flex_sdk\bin') + '"', False); 
-    if Exec(ExpandConstant('{app}\flex_sdk\bin\xbind.exe'), 'xbind.script placement.txt', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
-      begin
+  //if CurStep = ssPostInstall then begin
+    //SaveStringToFile(ExpandConstant('{app}\flex_sdk\bin\placement.txt'), 'Root="' + ExpandConstant('{app}\flex_sdk\bin') + '"', False); 
+    //if Exec(ExpandConstant('{app}\flex_sdk\bin\xbind.exe'), 'xbind.script placement.txt', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+      //begin
         // MsgBox('xbind ok', mbInformation, MB_OK);
-      end
-      else begin
-        MsgBox('xbind failed: ' + SysErrorMessage(ResultCode), mbCriticalError, MB_OK);
-        Abort();
-      end;
-    end;
+      //end
+      //else begin
+        //MsgBox('xbind failed: ' + SysErrorMessage(ResultCode), mbCriticalError, MB_OK);
+        //Abort();
+      //end;
+    //end;
 end;
