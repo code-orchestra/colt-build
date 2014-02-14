@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../colt-as/colt-as.iml" filepath="$PROJECT_DIR$/../colt-as/colt-as.iml" />
       <module fileurl="file://$PROJECT_DIR$/../colt-core/colt-core.iml" filepath="$PROJECT_DIR$/../colt-core/colt-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../colt-js/colt-js.iml" filepath="$PROJECT_DIR$/../colt-js/colt-js.iml" />
       <module fileurl="file://$PROJECT_DIR$/colt-updater/colt-updater.iml" filepath="$PROJECT_DIR$/colt-updater/colt-updater.iml" />
     </modules>
   </component>
