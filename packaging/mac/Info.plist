@@ -55,7 +55,7 @@
 <array>
   <string>-Dfile.encoding=UTF-8</string>
   <string>-Dcolt.base.dir=$APP_PACKAGE</string>
-    <string>-Dcolt.handlers=AS:codeOrchestra.colt.as.ASLiveCodingLanguageHandler</string>
+  <string>-Dcolt.handlers=AS:codeOrchestra.colt.as.ASLiveCodingLanguageHandler</string>
 </array>
 <key>JVMArguments</key>
 <array>
