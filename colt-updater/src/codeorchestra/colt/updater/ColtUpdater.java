@@ -179,7 +179,7 @@ class ColtUpdater {
             File executable = new File(getApplicationBaseDir(), "Contents/MacOs/JavaAppLauncher");
             return executable.exists() ? executable : null;
         } else if (SystemInfo.isWindows) {
-            File executable = new File(getApplicationBaseDir(), "colt.exe");
+            File executable = new File(getApplicationBaseDir(), "coltAS.exe");
             return executable.exists() ? executable : null;
         } else if (SystemInfo.isLinux) {
             File executable = new File(getApplicationBaseDir(), "colt");

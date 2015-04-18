@@ -26,6 +26,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/slf4j-api-1.7.5.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/slf4j-simple-1.7.5.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/zip4j_1.3.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../colt-core/lib/openjfx-78-backport-1.8.0-ea-b96.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
