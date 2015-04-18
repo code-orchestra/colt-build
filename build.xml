@@ -1,190 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="colt-build" default="all">
-  
-  <!-- Properties -->
-  <property file="build.properties"/>
 
-  <property name="colt.core.dir" value="${basedir}/../colt-core" />
-  <property name="colt.as.dir" value="${basedir}/../colt-as" />
-  <property name="colt.js.dir" value="${basedir}/../colt-js" />    
+    <!-- Properties -->
+    <property file="build.properties"/>
 
-  <property name="colt.artifacts.dir" value="${basedir}/artifacts" />
-  <property name="colt.output.dir" value="${basedir}/out" />
-  <property name="groovy.lib.dir" value="${groovy.home}/lib" />  
-  <property name="proguard.config.abs.path" location="obfuscation.pro"/>	  
-  
-  <!-- Property for the platform.  -->
-  <condition property="isMac" value="true">
-      <os family="mac"/>
-  </condition>
-  <condition property="isWindows">
-      <os family="windows" />
-  </condition>
-  <condition property="isLinux">
-      <os family="unix" />
-  </condition>
+    <property name="colt.core.dir" value="${basedir}/../colt-core" />
+    <property name="colt.as.dir" value="${basedir}/../colt-as" />
+    <property name="colt.artifacts.dir" value="${basedir}/artifacts" />
+    <property name="colt.output.dir" value="${basedir}/out" />
+    <property name="groovy.lib.dir" value="${groovy.home}/lib" />
 
-  <!-- Tasks definitions -->
-  <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="${basedir}/lib/appbundler-1.0.jar" />
+    <!-- Property for the platform.  -->
+    <condition property="isMac" value="true">
+        <os family="mac"/>
+    </condition>
+    <condition property="isWindows">
+        <os family="windows" />
+    </condition>
 
-  <!-- Targets -->
-  <target name="all" depends="prepare, copy.examples, package.mac, package.win, package.linux" />
+    <!-- Tasks definitions -->
+    <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="${basedir}/lib/appbundler-1.0.jar" />
 
-  <target name="prepare">
-	<mkdir dir="${colt.output.dir}"/>	
-  </target>
-  
-  <target name="copy.examples">
-	<mkdir dir="${colt.artifacts.dir}/projects" />	 
-	<copy todir="${colt.artifacts.dir}/projects">
-	  <fileset dir="../livecoding_examples">
-		<exclude name=".git/**"/>
-		<exclude name=".gitignore"/>			
-	  </fileset>
-	</copy>
-  </target>
-  
-  <target name="package.common">
-	<property name="package.output.dir" value="${colt.output.dir}/mac/COLT.app" />
-      <checksum>
-          <fileset dir="${colt.artifacts.dir}">
-              <include name="*.jar"/>
-          </fileset>
-      </checksum>
-      <mkdir dir="${package.output.dir}"/>
-    <mkdir dir="${package.output.dir}/flex_sdk"/>
-    <!--flex_sdk will download-->
-    <!--<copy todir="${package.output.dir}/flex_sdk">-->
-      <!--<fileset dir="${colt.as.dir}/flex_sdk"/>-->
-    <!--</copy>-->
-    <!--gradle will download-->
-    <!--<copy todir="${package.output.dir}/gradle">-->
-      <!--<fileset dir="${gradle.home}"/>-->
-    <!--</copy>-->
-    <copy file="${colt.as.dir}/lib/colt.swc" todir="${package.output.dir}/lib"/>    
-    <copy file="${colt.js.dir}/lib/live.js" todir="${package.output.dir}/lib"/>        	
-    <copy file="${colt.js.dir}/lib/colt.js" todir="${package.output.dir}/lib"/>     
-    <copy file="${colt.js.dir}/lib/colt.css" todir="${package.output.dir}/lib"/>         
-    <copy file="${colt.js.dir}/lib/colt-jquery-slider.js" todir="${package.output.dir}/lib"/>                    	
-	<mkdir dir="${package.output.dir}/lib/mercury" />
-    <copy todir="${package.output.dir}/lib/mercury">
-        <fileset dir="${colt.js.dir}/lib/mercury"/>
-    </copy>
-    <copy todir="${package.output.dir}/templates">
-      <fileset dir="${colt.as.dir}/templates"/>
-    </copy>
-    <copy file="${colt.as.dir}/crossdomain.xml" todir="${package.output.dir}"/>        
-  </target>
-  
-  <target name="package.mac" if="isMac">
-	<property name="mac.output.dir" value="${colt.output.dir}/mac/COLT/COLT/COLT.app" />
-	<antcall target="package.common">
-	    <param name="package.output.dir" value="${mac.output.dir}"/>
-	</antcall>        
-    <mkdir dir="${mac.output.dir}/Contents" />
-    <copy todir="${mac.output.dir}/Contents">
-      <fileset dir="${basedir}/packaging/mac/"/>
-    </copy>	 
-    <mkdir dir="${mac.output.dir}/Contents/Java" />    
-	<copy todir="${mac.output.dir}/Contents/Java">
-      <fileset dir="${colt.artifacts.dir}">
-        <include name="*.jar"/>
-      </fileset>
-    </copy>       
-	<copy todir="${mac.output.dir}/Contents/Java">
-      <fileset dir="${groovy.lib.dir}">
-        <include name="*.jar"/>
-      </fileset>
-    </copy>           
-    <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>  
-	<mkdir dir="${colt.output.dir}/mac/COLT/COLT/projects"/>     
-	<copy todir="${colt.output.dir}/mac/COLT/COLT/projects">
-	  <fileset dir="../livecoding_examples">
-		<exclude name=".git/**"/>
-		<exclude name=".gitignore"/>			
-	  </fileset>
-	</copy>        
-  </target>
-  
-  <target name="package.win" if="isWindows">
-	<property name="win.output.dir" value="${colt.output.dir}/win" />
-	<antcall target="package.common">
-	  <param name="package.output.dir" value="${win.output.dir}"/>
-	</antcall> 
-    <mkdir dir="${win.output.dir}/projects" />
-	<copy todir="${win.output.dir}/projects">
-	  <fileset dir="../livecoding_examples">
-		<exclude name=".git/**"/>
-		<exclude name=".gitignore"/>			
-	  </fileset>
-	</copy>    
-    <mkdir dir="${win.output.dir}/jre" />
-    <copy todir="${win.output.dir}/jre">
-	  <fileset dir="${jre.path}"/>
-    </copy>	
-    <mkdir dir="${win.output.dir}/lib" />
-	<copy todir="${win.output.dir}">
-      <fileset dir="${basedir}/packaging/win/"/>
-    </copy>	 
-	<copy todir="${win.output.dir}/lib">
-      <fileset dir="${colt.artifacts.dir}">
-        <include name="*.jar"/>
-      </fileset>
-    </copy>       
-	<copy todir="${win.output.dir}/lib">
-      <fileset dir="${groovy.lib.dir}">
-        <include name="*.jar"/>
-      </fileset>
-    </copy>
-  </target>
+    <!-- Targets -->
+    <target name="all" depends="prepare, package.mac, package.win" />
 
-  <target name="package.linux" if="isLinux">
-      <property name="linux.output.dir" value="${colt.output.dir}/linux" />
-      <antcall target="package.common">
-          <param name="package.output.dir" value="${linux.output.dir}"/>
-      </antcall>
-      <mkdir dir="${linux.output.dir}/projects" />
-      <copy todir="${linux.output.dir}/projects">
-          <fileset dir="../livecoding_examples">
-              <exclude name=".git/**"/>
-              <exclude name=".gitignore"/>
-              <exclude name="as/**"/>
-          </fileset>
-      </copy>
-      <copy todir="${linux.output.dir}">
-          <fileset dir="${basedir}/packaging/linux/"/>
-      </copy>
-      <chmod file="${linux.output.dir}/colt" perm="+x"/>
-      <mkdir dir="${linux.output.dir}/runtime/jre" />
-      <copy todir="${linux.output.dir}/runtime/jre">
-          <fileset dir="${jre.path}"/>
-      </copy>
-      <mkdir dir="${linux.output.dir}/app" />
-      <copy todir="${linux.output.dir}/app">
-          <fileset dir="${colt.artifacts.dir}">
-              <include name="*.jar"/>
-              <exclude name="colt-as.jar"/>
-          </fileset>
-      </copy>
-      <copy todir="${linux.output.dir}/app">
-          <fileset dir="${groovy.lib.dir}">
-              <include name="*.jar"/>
-          </fileset>
-      </copy>
-  </target>
+    <target name="prepare">
+        <mkdir dir="${colt.output.dir}"/>
+    </target>
 
-  <target name="obfuscate.mac" if="isMac">
-	<exec executable="${proguard.home}/bin/proguard.sh">
-	  <arg value="@${proguard.config.abs.path}"/>
-	  <arg value="-forceprocessing"/>
-	</exec>
-  </target>
-	
-  <target name="obfuscate.win" if="isWindows">
-	<exec executable="${proguard.home}/bin/proguard.bat">
-	  <arg value="@${proguard.config.abs.path}"/>
-	  <arg value="-forceprocessing"/>
-	</exec>
-  </target>	
+    <target name="package.common">
+        <property name="package.output.dir" value="${colt.output.dir}/mac/COLT.app" />
+        <checksum>
+            <fileset dir="${colt.artifacts.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </checksum>
+        <mkdir dir="${package.output.dir}"/>
+        <mkdir dir="${package.output.dir}/flex_sdk"/>
+        <copy todir="${package.output.dir}/flex_sdk">
+            <fileset dir="${colt.as.dir}/flex_sdk"/>
+        </copy>
+        <copy file="${colt.as.dir}/lib/colt.swc" todir="${package.output.dir}/lib"/>
+        <copy todir="${package.output.dir}/templates">
+            <fileset dir="${colt.as.dir}/templates"/>
+        </copy>
+        <copy file="${colt.as.dir}/crossdomain.xml" todir="${package.output.dir}"/>
+    </target>
 
+    <target name="package.mac" if="isMac">
+        <antcall target="package.common">
+            <param name="package.output.dir" value="${mac.output.dir}"/>
+        </antcall>
+        <mkdir dir="${mac.output.dir}/Contents" />
+        <copy todir="${mac.output.dir}/Contents">
+            <fileset dir="${basedir}/packaging/mac/"/>
+        </copy>
+        <mkdir dir="${mac.output.dir}/Contents/Java" />
+        <copy todir="${mac.output.dir}/Contents/Java">
+            <fileset dir="${colt.artifacts.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+        <copy todir="${mac.output.dir}/Contents/Java">
+            <fileset dir="${groovy.lib.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+        <chmod file="${mac.output.dir}/Contents/MacOs/JavaAppLauncher" perm="+x"/>
+        <mkdir dir="${colt.output.dir}/mac/COLT/COLT/projects"/>
+        <copy todir="${colt.output.dir}/mac/COLT/COLT/projects">
+            <fileset dir="../livecoding_examples">
+                <exclude name=".git/**"/>
+                <exclude name=".gitignore"/>
+                <exclude name="js/**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="package.win" if="isWindows">
+        <property name="win.output.dir" value="${colt.output.dir}/win" />
+        <antcall target="package.common">
+            <param name="package.output.dir" value="${win.output.dir}"/>
+        </antcall>
+        <mkdir dir="${win.output.dir}/projects" />
+        <copy todir="${win.output.dir}/projects">
+            <fileset dir="../livecoding_examples">
+                <exclude name=".git/**"/>
+                <exclude name=".gitignore"/>
+                <exclude name="js/**"/>
+            </fileset>
+        </copy>
+        <mkdir dir="${win.output.dir}/jre" />
+        <copy todir="${win.output.dir}/jre">
+            <fileset dir="${jre.path}"/>
+        </copy>
+        <mkdir dir="${win.output.dir}/lib" />
+        <copy todir="${win.output.dir}">
+            <fileset dir="${basedir}/packaging/win/"/>
+        </copy>
+        <copy todir="${win.output.dir}/lib">
+            <fileset dir="${colt.artifacts.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+        <copy todir="${win.output.dir}/lib">
+            <fileset dir="${groovy.lib.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+    </target>
 </project>
