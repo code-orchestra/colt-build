@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="colt-build" default="all">
-  
-  <!-- Properties -->
-  <property file="build.properties"/>
 
-  <property name="colt.core.dir" value="${basedir}/../colt-core" />
-  <property name="colt.as.dir" value="${basedir}/../colt-as" />
-  <property name="colt.js.dir" value="${basedir}/../colt-js" />    
+    <!-- Properties -->
+    <property file="build.properties"/>
 
-  <property name="colt.artifacts.dir" value="${basedir}/artifacts" />
-  <property name="colt.output.dir" value="${basedir}/out" />
-  <property name="groovy.lib.dir" value="${groovy.home}/lib" />  
-  <property name="proguard.config.abs.path" location="obfuscation.pro"/>	  
-  
-  <!-- Property for the platform.  -->
-  <condition property="isMac" value="true">
-      <os family="mac"/>
-  </condition>
-  <condition property="isWindows">
-      <os family="windows" />
-  </condition>
-  <condition property="isLinux">
-      <os family="unix" />
-  </condition>
+    <property name="colt.core.dir" value="${basedir}/../colt-core" />
+    <property name="colt.as.dir" value="${basedir}/../colt-as" />
+    <property name="colt.artifacts.dir" value="${basedir}/artifacts" />
+    <property name="colt.output.dir" value="${basedir}/out" />
+    <property name="groovy.lib.dir" value="${groovy.home}/lib" />
 
-  <!-- Tasks definitions -->
-  <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="${basedir}/lib/appbundler-1.0.jar" />
+    <!-- Property for the platform.  -->
+    <condition property="isMac" value="true">
+        <os family="mac"/>
+    </condition>
+    <condition property="isWindows">
+        <os family="windows" />
+    </condition>
 
   <!-- Targets -->
   <target name="all" depends="prepare, package.mac, package.win" />
@@ -116,19 +107,4 @@
       </fileset>
     </copy>
   </target>
-
-  <target name="obfuscate.mac" if="isMac">
-	<exec executable="${proguard.home}/bin/proguard.sh">
-	  <arg value="@${proguard.config.abs.path}"/>
-	  <arg value="-forceprocessing"/>
-	</exec>
-  </target>
-	
-  <target name="obfuscate.win" if="isWindows">
-	<exec executable="${proguard.home}/bin/proguard.bat">
-	  <arg value="@${proguard.config.abs.path}"/>
-	  <arg value="-forceprocessing"/>
-	</exec>
-  </target>	
-
 </project>
