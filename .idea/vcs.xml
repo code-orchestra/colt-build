@@ -5,8 +5,6 @@
     <mapping directory="$PROJECT_DIR$/../colt-as" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../colt-core" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../colt-js" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../livecoding_examples" vcs="Git" />
   </component>
 </project>
-
