@@ -1,4 +1,4 @@
-package codeorchestra.colt.updater;
+package codeOrchestra.colt.updater;
 
 import java.io.*;
 import java.lang.reflect.Method;
