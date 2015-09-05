@@ -1,0 +1,7 @@
+rootProject.name = 'colt-build'
+
+include 'colt-updater'
+include 'colt-core'
+project(':colt-core').projectDir = file('../colt-core')
+include 'colt-as'
+project(':colt-as').projectDir = file('../colt-as')

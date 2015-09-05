@@ -12,5 +12,5 @@ Class-Path: ant-1.8.4.jar ant-antlr-1.8.4.jar ant-junit-1.8.4.jar ant-
  2.2.0.jar jansi-1.6.jar jcommander-1.27.jar jline-1.0.jar jsp-api-2.0
  .jar jsr166y-1.7.0.jar junit-4.11.jar qdox-1.12.1.jar servlet-api-2.4
  .jar testng-6.8.jar xmlpull-1.1.3.1.jar xstream-1.4.2.jar
-Main-Class: codeorchestra.colt.updater.ColtUpdater
+Main-Class: main.java.updater.ColtUpdater
 

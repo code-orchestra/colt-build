@@ -1,0 +1,142 @@
+group 'codeOrchestra.colt'
+version '1.3.1'
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies { classpath 'org.ajoberstar:gradle-git:1.2.0' }
+}
+
+allprojects {
+    apply plugin: 'groovy'
+    sourceSets {
+        main {
+            java { srcDirs = [] }
+            groovy { srcDirs += ["src/main/java"] }
+            output.classesDir = "$rootProject.projectDir.path/out/production/$project.name"
+            output.resourcesDir = "$rootProject.projectDir.path/out/production/$project.name"
+        }
+        test {
+            java { srcDirs = [] }
+            groovy { srcDirs += ["src/test/java"] }
+            output.classesDir = "$rootProject.projectDir.path/out/test/$project.name"
+            output.resourcesDir = "$rootProject.projectDir.path/out/test/$project.name"
+        }
+    }
+    compileJava {
+        options.fork = true
+        options.forkOptions.executable = "$JDK_HOME/bin/javac"
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    }
+}
+
+project('colt-updater') {
+    apply plugin: 'java'
+    compileGroovy.enabled = false;
+    sourceSets {
+        main {
+            java { srcDirs = ["src/main/java"] }
+            groovy { srcDirs = [] }
+            output.classesDir = "$rootProject.projectDir.path/out/production/$project.name"
+            output.resourcesDir = "$rootProject.projectDir.path/out/production/$project.name"
+        }
+    }
+}
+project('colt-as') {
+    dependencies {
+        compile fileTree(dir: project(":colt-core").projectDir.path + '/lib', include: '*.jar')
+        compile fileTree(dir: 'lib', include: '*.jar')
+        compile project(':colt-core')
+    }
+}
+project('colt-core') {
+    dependencies {
+        compile fileTree(dir: project(":colt-as").projectDir.path + '/lib', include: '*.jar')
+        compile fileTree(dir: 'lib', include: '*.jar')
+    }
+}
+
+[compileGroovy, compileJava]*.enabled = false
+sourceSets {
+    main { [groovy, java, resources]*.srcDirs = [] }
+    test { [groovy, java, resources]*.srcDirs = [] }
+}
+
+task cloneModules << {
+    def dir = project(":colt-as").projectDir
+    if(!dir.exists() || !file(dir.path + "/.git").exists()) {
+        dir.deleteDir()
+        org.ajoberstar.grgit.Grgit.clone(dir: dir, uri: COLT_AS_GIT)
+    }
+    dir = project(":colt-core").projectDir
+    if(!dir.exists() || !file(dir.path + "/.git").exists()) {
+        dir.deleteDir()
+        org.ajoberstar.grgit.Grgit.clone(dir: dir, uri: COLT_CORE_GIT)
+    }
+}
+
+task preBuild(dependsOn: 'cloneModules', type: Copy) {
+    def coltasPath = project(":colt-as").projectDir.path
+    def out = "out/bin/win"
+    ["flex_sdk", "projects"].findResults { out + "/" + it }.each { if (!file(it).exists()) mkdir(it) }
+    file(out + "/lib").deleteDir()
+    copy {
+        from coltasPath + "/lib/colt.swc"
+        into out + "/lib"
+    }
+    file(out + "/templates").deleteDir()
+    copy {
+        from coltasPath + "/templates"
+        into out + "/templates"
+        exclude "*.sh"
+    }
+    copy {
+        from coltasPath + "/crossdomain.xml"
+        into out
+    }
+    copy {
+        from files("src/deploy/package/colticon.ico", "src/deploy/package/coltAS.properties")
+        into out
+    }
+}
+task postBuild(dependsOn: 'build', type: Copy) {
+    def lib = "out/bin/win/lib"
+    allprojects.each {project ->
+        ["build/libs", "lib"].each {dir ->
+            copy {
+                from project.projectDir.path + "/" + dir
+                into lib
+                include "*.jar"
+            }
+        }
+    }
+    copy {
+        from configurations.compile.asPath
+        into lib
+    }
+}
+clean.doFirst {
+    delete "$rootProject.projectDir.path/out/production"
+}
+compileJava.dependsOn preBuild
+
+apply plugin: 'application'
+mainClassName = 'codeOrchestra.colt.core.ui.ColtApplication'
+dependencies {
+    runtime project(":colt-updater")
+    runtime project(":colt-as")
+}
+task run(dependsOn: 'postBuild', type: JavaExec, overwrite: true) {
+    main = "$mainClassName"
+    classpath = files("$rootProject.projectDir.path/out/bin/win/lib").asFileTree
+    workingDir = file("$rootProject.projectDir.path/out/bin/win")
+}
