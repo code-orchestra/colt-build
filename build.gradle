@@ -63,6 +63,7 @@ allprojects {
         compile 'org.ow2.asm:asm-commons:4.0'
         compile 'org.ow2.asm:asm-tree:4.0'
         compile 'org.ow2.asm:asm-util:4.0'
+        compile 'org.scala-lang:scala-library:2.8.0'
     }
 }
 
@@ -87,7 +88,6 @@ project('colt-as') {
 }
 project('colt-core') {
     dependencies {
-        compile fileTree(dir: project(":colt-as").projectDir.path + '/lib', include: '*.jar')
         compile fileTree(dir: 'lib', include: '*.jar')
     }
 }
