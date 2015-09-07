@@ -110,12 +110,17 @@ task cloneModules << {
         dir.deleteDir()
         org.ajoberstar.grgit.Grgit.clone(dir: dir, uri: COLT_CORE_GIT)
     }
+    dir = file("../livecoding_examples")
+    if(!dir.exists() || !file(dir.path + "/.git").exists()) {
+        dir.deleteDir()
+        org.ajoberstar.grgit.Grgit.clone(dir: dir, uri: LIVECODING_EXAMPLES)
+    }
 }
 
 task preBuild(dependsOn: 'cloneModules', type: Copy) {
     def coltasPath = project(":colt-as").projectDir.path
     def out = "out/bin/win"
-    ["flex_sdk", "projects"].findResults { out + "/" + it }.each { if (!file(it).exists()) mkdir(it) }
+    ["flex_sdk"].findResults { out + "/" + it }.each { if (!file(it).exists()) mkdir(it) }
     file(out + "/lib").deleteDir()
     copy {
         from coltasPath + "/lib/colt.swc"
@@ -134,6 +139,11 @@ task preBuild(dependsOn: 'cloneModules', type: Copy) {
     copy {
         from files("src/deploy/package/colticon.ico", "src/deploy/package/coltAS.properties")
         into out
+    }
+    file(out + "/projects").deleteDir()
+    copy {
+        from fileTree(dir: "../livecoding_examples/as")
+        into out + "/projects"
     }
 }
 task postBuild(dependsOn: 'build', type: Copy) {
