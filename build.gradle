@@ -15,13 +15,11 @@ allprojects {
             java { srcDirs = [] }
             groovy { srcDirs += ["src/main/java"] }
             output.classesDir = "$rootProject.projectDir.path/out/production/$project.name"
-            output.resourcesDir = "$rootProject.projectDir.path/out/production/$project.name"
         }
         test {
             java { srcDirs = [] }
             groovy { srcDirs += ["src/test/java"] }
             output.classesDir = "$rootProject.projectDir.path/out/test/$project.name"
-            output.resourcesDir = "$rootProject.projectDir.path/out/test/$project.name"
         }
     }
     compileJava {
@@ -76,7 +74,6 @@ project('colt-updater') {
             java { srcDirs = ["src/main/java"] }
             groovy { srcDirs = [] }
             output.classesDir = "$rootProject.projectDir.path/out/production/$project.name"
-            output.resourcesDir = "$rootProject.projectDir.path/out/production/$project.name"
         }
     }
 }
