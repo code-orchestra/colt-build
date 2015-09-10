@@ -1,9 +1,13 @@
+.idea/*
 .gradle/*
 artifacts/*
 build/*
 out/*
-code-updater/build/*
-.idea/workspace.xml
+colt-updater/build/*
+src/deploy/resources/projects/*
+src/deploy/resources/templates/*
+src/deploy/resources/crossdomain.xml
+src/deploy/resources/lib/colt.swc
 *.class
 *.properties
 

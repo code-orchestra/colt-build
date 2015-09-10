@@ -1,5 +1,4 @@
 package codeOrchestra.colt.updater;
-
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -179,7 +178,7 @@ class ColtUpdater {
             File executable = new File(getApplicationBaseDir(), "Contents/MacOs/JavaAppLauncher");
             return executable.exists() ? executable : null;
         } else if (SystemInfo.isWindows) {
-            File executable = new File(getApplicationBaseDir(), "coltAS.exe");
+            File executable = new File(getApplicationBaseDir(), "colt.exe");
             return executable.exists() ? executable : null;
         } else if (SystemInfo.isLinux) {
             File executable = new File(getApplicationBaseDir(), "colt");
