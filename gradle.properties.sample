@@ -1,4 +1,7 @@
 JDK_HOME = C:/Program Files (x86)/Java/jdk1.8.0_60
+jfxrtDir = C:/Program Files (x86)/Java/jdk1.8.0_60
 COLT_AS_GIT = git@github.com:code-orchestra/colt-as.git
 COLT_CORE_GIT = git@github.com:code-orchestra/colt-core.git
 LIVECODING_EXAMPLES = git@github.com:code-orchestra/livecoding_examples.git
+FLEX_SDK_HOME =
+FLEX_SDK_LIVECODING_REPO =
