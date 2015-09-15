@@ -53,12 +53,10 @@ subprojects {
         main {
             java { srcDirs = [] }
             groovy { srcDirs += ["src/main/java"] }
-            resources { srcDirs = []}
         }
         test {
             java { srcDirs = [] }
             groovy { srcDirs += ["src/test/java"] }
-            resources { srcDirs = [] }
         }
     }
     compileJava {
