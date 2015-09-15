@@ -1,4 +1,4 @@
-rootProject.name = 'colt-build'
+rootProject.name = 'colt'
 
 include 'colt-updater'
 include 'colt-core'
