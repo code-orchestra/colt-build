@@ -160,18 +160,6 @@ task postBuild(type: Copy) {
     }
 }
 
-sourceSets {
-    main {
-        resources {
-            srcDirs += [
-                    "${project(":colt-core").projectDir.path}/src/main/resources",
-                    "${project(":colt-as").projectDir.path}/src/main/resources",
-                    "${project(":colt-updater").projectDir.path}/src/main/resources"
-            ]
-        }
-    }
-}
-
 javafx {
     appID 'COLTApp'
     appName 'colt'
