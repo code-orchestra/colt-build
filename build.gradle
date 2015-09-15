@@ -1,5 +1,6 @@
 group 'codeOrchestra.colt'
 version '1.3.1'
+apply from: 'http://dl.bintray.com/content/shemnon/javafx-gradle/8.1.1/javafx.plugin'
 
 buildscript {
     repositories {
@@ -9,29 +10,10 @@ buildscript {
     dependencies { classpath 'org.ajoberstar:gradle-git:1.2.0' }
 }
 allprojects {
+    apply plugin: 'groovy'
     repositories {
         mavenCentral()
         mavenLocal()
-    }
-}
-subprojects {
-    apply plugin: 'groovy'
-    sourceSets {
-        main {
-            java { srcDirs = [] }
-            groovy { srcDirs += ["src/main/java"] }
-        }
-        test {
-            java { srcDirs = [] }
-            groovy { srcDirs += ["src/test/java"] }
-        }
-    }
-    compileJava {
-        options.fork = true
-        options.forkOptions.executable = "$JDK_HOME/bin/javac"
-        options.encoding = 'UTF-8'
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
     }
     dependencies {
         compile 'org.codehaus.groovy:groovy-all:2.4.4'
@@ -66,6 +48,27 @@ subprojects {
         compile 'org.scala-lang:scala-library:2.8.0'
     }
 }
+subprojects {
+    sourceSets {
+        main {
+            java { srcDirs = [] }
+            groovy { srcDirs += ["src/main/java"] }
+            resources { srcDirs = []}
+        }
+        test {
+            java { srcDirs = [] }
+            groovy { srcDirs += ["src/test/java"] }
+            resources { srcDirs = [] }
+        }
+    }
+    compileJava {
+        options.fork = true
+        options.forkOptions.executable = "$JDK_HOME/bin/javac"
+        options.encoding = 'UTF-8'
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}
 
 project('colt-updater') {
     apply plugin: 'java'
@@ -80,7 +83,6 @@ project('colt-updater') {
 project('colt-as') {
     dependencies {
         compile fileTree(dir: "${project(":colt-core").projectDir.path}/lib", include: '*.jar')
-        compile fileTree(dir: 'lib', include: '*.jar')
         compile project(':colt-core')
     }
 }
@@ -158,7 +160,17 @@ task postBuild(type: Copy) {
     }
 }
 
-apply from: 'http://dl.bintray.com/content/shemnon/javafx-gradle/8.1.1/javafx.plugin'
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    "${project(":colt-core").projectDir.path}/src/main/resources",
+                    "${project(":colt-as").projectDir.path}/src/main/resources",
+                    "${project(":colt-updater").projectDir.path}/src/main/resources"
+            ]
+        }
+    }
+}
 
 javafx {
     appID 'COLTApp'
@@ -189,39 +201,9 @@ javafx {
     }
 }
 
-cssToBin { enabled = true }
+cssToBin { enabled = false }
 
 dependencies {
-    runtime 'org.codehaus.groovy:groovy-all:2.4.4'
-    runtime ('com.googlecode.apparat:apparat-core:1.0-RC9') { transitive = false }
-    runtime ('com.googlecode.apparat:apparat-log:1.0-RC9') { transitive = false }
-    runtime 'com.github.briandilley.jsonrpc4j:jsonrpc4j:1.0'
-    runtime 'org.apache.ant:ant:1.9.2'
-    runtime 'org.antlr:antlr4:4.5'
-    runtime 'com.aquafx-project:aquafx:0.1'
-    runtime 'commons-codec:commons-codec:1.3'
-    runtime 'org.controlsfx:controlsfx:8.0.2'
-    runtime 'commons-httpclient:commons-httpclient:3.0.1'
-    runtime 'org.mortbay.jetty:jetty:6.1.26'
-    runtime 'org.mortbay.jetty:jetty-util:6.1.26'
-    runtime 'com.fasterxml.jackson.core:jackson-annotations:2.2.0'
-    runtime 'com.fasterxml.jackson.core:jackson-core:2.2.0'
-    runtime 'com.fasterxml.jackson.core:jackson-databind:2.2.0'
-    runtime 'org.apache.logging.log4j:log4j-api:2.0-beta8'
-    runtime 'org.apache.logging.log4j:log4j-core:2.0-beta8'
-    runtime 'net.java.openjfx.backport:openjfx-78-backport:1.8.0-ea-b96.1'
-    runtime 'javax.portlet:portlet-api:2.0'
-    runtime 'javax.servlet:servlet-api:2.4'
-    runtime 'org.slf4j:slf4j-api:1.7.5'
-    runtime 'org.slf4j:slf4j-simple:1.7.5'
-    runtime 'net.lingala.zip4j:zip4j:1.3.2'
-    runtime 'javax.jmdns:jmdns:3.4.1'
-    runtime 'org.ow2.asm:asm:4.0'
-    runtime 'org.ow2.asm:asm-analysis:4.0'
-    runtime 'org.ow2.asm:asm-commons:4.0'
-    runtime 'org.ow2.asm:asm-tree:4.0'
-    runtime 'org.ow2.asm:asm-util:4.0'
-    runtime 'org.scala-lang:scala-library:2.8.0'
     runtime project(":colt-core")
     runtime project(":colt-as")
     runtime project(":colt-updater")
