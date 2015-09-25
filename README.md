@@ -2,6 +2,7 @@
 Meta-repository for COLT modules
 
 # How to build COLT?
+- install 'Inno Setup' from http://www.jrsoftware.org/isdl.php#stable
 - fork https://github.com/code-orchestra/colt-as
 - fork https://github.com/code-orchestra/colt-core
 - fork https://github.com/code-orchestra/colt-build
