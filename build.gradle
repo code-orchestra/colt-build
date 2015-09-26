@@ -161,7 +161,7 @@ task postBuild(type: Copy) {
 
 javafx {
     appID 'COLTApp'
-    appName 'colt'
+    appName 'COLT'
     mainClass 'codeOrchestra.colt.core.ui.ColtApplication'
     jvmArgs = ['-XX:+AggressiveOpts', '-XX:CompileThreshold=1']
     systemProperties = ['prism.disableRegionCaching':'true']
@@ -172,7 +172,7 @@ javafx {
     copyright = '� 2012-2015. All rights reserved'
     signingMode 'release'
     codebase = 'https://github.com/code-orchestra'
-    installSystemWide = true
+    installSystemWide = false
     menu = true
     shortcut = true
     icons {
