@@ -1,5 +1,6 @@
 group 'codeOrchestra.colt'
 version '1.3.1'
+apply plugin: 'idea'
 apply from: 'http://dl.bintray.com/content/shemnon/javafx-gradle/8.1.1/javafx.plugin'
 
 buildscript {
@@ -160,7 +161,7 @@ task postBuild(type: Copy) {
 
 javafx {
     appID 'COLTApp'
-    appName 'colt'
+    appName 'COLT'
     mainClass 'codeOrchestra.colt.core.ui.ColtApplication'
     jvmArgs = ['-XX:+AggressiveOpts', '-XX:CompileThreshold=1']
     systemProperties = ['prism.disableRegionCaching':'true']
@@ -168,10 +169,10 @@ javafx {
     embedLauncher = true
     vendor = 'CodeOrchestra'
     description = 'COLT is a small program to test and build mobile, web and desktop-based applications in real time.'
-    copyright = '© 2012-2015. All rights reserved'
+    copyright = 'ï¿½ 2012-2015. All rights reserved'
     signingMode 'release'
     codebase = 'https://github.com/code-orchestra'
-    installSystemWide = true
+    installSystemWide = false
     menu = true
     shortcut = true
     icons {

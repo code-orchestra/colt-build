@@ -10,6 +10,7 @@ src/deploy/resources/crossdomain.xml
 src/deploy/resources/lib/colt.swc
 *.class
 *.properties
+*.iml
 
 # OS generated files
 .DS_Store
