@@ -19,8 +19,9 @@ allprojects {
     dependencies {
         compile 'org.codehaus.groovy:groovy-all:2.4.4'
         compile ('com.googlecode.apparat:apparat-core:1.0-RC9') { transitive = false }
+        compile ('com.googlecode.apparat:apparat-log:1.0-RC9') { transitive = false }
         compile 'com.github.briandilley.jsonrpc4j:jsonrpc4j:1.1'
-        compile ('org.apache.ant:ant:1.9.6') { transitive = false }
+        compile 'org.apache.ant:ant:1.9.6'
         compile 'commons-codec:commons-codec:1.10'
         compile 'org.controlsfx:controlsfx:8.0.2'
         compile 'org.mortbay.jetty:jetty:6.1.26'
@@ -50,6 +51,7 @@ subprojects {
         options.fork = true
         options.forkOptions.executable = "$JDK_HOME/bin/javac"
         options.encoding = 'UTF-8'
+        options.incremental = true
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }

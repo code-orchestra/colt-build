@@ -21,3 +21,5 @@ src/deploy/resources/lib/colt.swc
 ehthumbs.db
 Thumbs.db
 flex_sdk/
+updates/
+lib/
