@@ -163,7 +163,7 @@ class ColtUpdater {
                     e.printStackTrace();
                 }
             }
-        } else if (SystemInfo.isWindows || SystemInfo.isLinux) {
+        } else if (SystemInfo.isWindows) {
             File executable = getApplicationExecutable();
             if (executable != null && executable.exists()) {
                 startExecutable(executable.getPath());
@@ -177,14 +177,11 @@ class ColtUpdater {
         if (SystemInfo.isMac) {
             File executable = new File(getApplicationBaseDir(), "Contents/MacOs/JavaAppLauncher");
             return executable.exists() ? executable : null;
-        } else if (SystemInfo.isWindows) {
+        }
+        if (SystemInfo.isWindows) {
             File executable = new File(getApplicationBaseDir(), "colt.exe");
             return executable.exists() ? executable : null;
-        } else if (SystemInfo.isLinux) {
-            File executable = new File(getApplicationBaseDir(), "colt");
-            return executable.exists() ? executable : null;
         }
-
         throw new IllegalStateException("Unsupported OS: " + System.getProperty("os.name"));
     }
 
