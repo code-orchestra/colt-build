@@ -5,6 +5,9 @@ clone_folder: C:\projects\CodeOrchestra\colt-build
 environment:
   matrix:
     - JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
+install:
+  - git clone https://github.com/code-orchestra/colt-core.git C:/projects/CodeOrchestra/colt-core
+  - git clone https://github.com/code-orchestra/colt-as.git C:/projects/CodeOrchestra/colt-as
 build_script:
   - cd C:\projects\CodeOrchestra\colt-build
   - copy gradle.properties.sample gradle.properties
