@@ -1,3 +1,4 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/o9vx055e0l1utpmq?svg=true)](https://ci.appveyor.com/project/code-orchestra/colt-build)
 # colt-build
 Meta-repository for COLT modules
 
