@@ -7,7 +7,7 @@ Meta-repository for COLT modules
 - groovy 2.4.4 or greater (http://www.groovy-lang.org/download.html)
 
 # How to build COLT?
-- install 'Inno Setup' from http://www.jrsoftware.org/isdl.php#stable
+- install 'Inno Setup' from http://www.jrsoftware.org/isdl.php#stable for Windows
 - fork https://github.com/code-orchestra/colt-as
 - fork https://github.com/code-orchestra/colt-core
 - fork https://github.com/code-orchestra/colt-build
