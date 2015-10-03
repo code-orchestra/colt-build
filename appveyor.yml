@@ -5,12 +5,6 @@ clone_folder: C:\projects\CodeOrchestra\colt-build
 environment:
   matrix:
     - JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
-install:
-   - cinst gradle
-   - cinst groovy
 build_script:
-  - gradle --version
-  - groovy --version
-  - java -version
   - cd C:\projects\CodeOrchestra\colt-build
-  - gradle build
+  - gradlew
