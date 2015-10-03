@@ -7,4 +7,5 @@ environment:
     - JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
 build_script:
   - cd C:\projects\CodeOrchestra\colt-build
+  - copy gradle.properties.sample gradle.properties
   - gradlew
