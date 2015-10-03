@@ -8,6 +8,7 @@ environment:
 install:
   - git clone https://github.com/code-orchestra/colt-core.git C:/projects/CodeOrchestra/colt-core
   - git clone https://github.com/code-orchestra/colt-as.git C:/projects/CodeOrchestra/colt-as
+  - git clone https://github.com/code-orchestra/livecoding_examples.git C:/projects/CodeOrchestra/livecoding_examples
 build_script:
   - cd C:\projects\CodeOrchestra\colt-build
   - copy gradle.properties.sample gradle.properties
