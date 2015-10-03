@@ -9,4 +9,4 @@ build_script:
   - cd C:\projects\CodeOrchestra\colt-build
   - copy gradle.properties.sample gradle.properties
   - gradlew
-  - gradle build
+  - gradlew build
