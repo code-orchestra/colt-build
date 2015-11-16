@@ -19,6 +19,9 @@ build_script:
 - ls build\distributions
 after_build:
 - mv build\distributions\COLT-1.3.1.exe colt-{appveyor_build_version}-win-x86.exe
+artifacts:
+- path: colt-{appveyor_build_version}-win-x86.exe
+  name: colt-{appveyor_build_version}-win-x86
 deploy:
 - provider: GitHub
   release: $(appveyor_build_version)
