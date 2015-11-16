@@ -17,4 +17,4 @@ build_script:
 - gradlew build
 - pwd
 - ls
-#- ls /build
+- ls build
