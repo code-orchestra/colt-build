@@ -15,7 +15,7 @@ install:
 - cinst InnoSetup
 build_script:
 - cd C:\projects\CodeOrchestra\colt-build
-- copy gradle.properties.sample gradle.properties
+- copy gradle.properties.%PLATFORM%.sample gradle.properties
 - gradlew
 - gradlew build
 after_build:
