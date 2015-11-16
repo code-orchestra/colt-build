@@ -4,7 +4,13 @@ clone_depth: 10
 clone_folder: C:\projects\CodeOrchestra\colt-build
 environment:
   matrix:
-  - JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
+  - platform: x86
+    JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
+  - platform: x64
+    JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+#platform:
+#- x86
+#- x64
 install:
 - git clone https://github.com/code-orchestra/colt-core.git C:\projects\CodeOrchestra\colt-core
 - git clone https://github.com/code-orchestra/colt-as.git C:\projects\CodeOrchestra\colt-as
@@ -16,10 +22,10 @@ build_script:
 - gradlew
 - gradlew build
 after_build:
-- mv build\distributions\COLT-1.3.1.exe colt-win-x86.exe
+- mv build\distributions\COLT-1.3.1.exe colt-win-{platform}.exe
 artifacts:
-- path: colt-win-x86.exe
-  name: colt-win-x86
+- path: colt-win-$(platform).exe
+  name: colt-win-$(platform)
 deploy:
 - provider: GitHub
   release: $(appveyor_build_version)
