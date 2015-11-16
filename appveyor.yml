@@ -15,6 +15,8 @@ build_script:
 - copy gradle.properties.sample gradle.properties
 - gradlew
 - gradlew build
+- pwd
+- ls build\distributions
 deploy:
 - provider: GitHub
   release: $(appveyor_build_version)
