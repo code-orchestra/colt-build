@@ -1,16 +1,33 @@
-version: '{build}'
+version: 1.3.{build}
 skip_tags: true
 clone_depth: 10
 clone_folder: C:\projects\CodeOrchestra\colt-build
 environment:
   matrix:
-    - JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
+  - platform: x86
+    JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
+  - platform: x64
+    JAVA_HOME: C:\Program Files\Java\jdk1.8.0
 install:
-  - git clone https://github.com/code-orchestra/colt-core.git C:/projects/CodeOrchestra/colt-core
-  - git clone https://github.com/code-orchestra/colt-as.git C:/projects/CodeOrchestra/colt-as
-  - git clone https://github.com/code-orchestra/livecoding_examples.git C:/projects/CodeOrchestra/livecoding_examples
+- git clone https://github.com/code-orchestra/colt-core.git C:\projects\CodeOrchestra\colt-core
+- git clone https://github.com/code-orchestra/colt-as.git C:\projects\CodeOrchestra\colt-as
+- git clone https://github.com/code-orchestra/livecoding_examples.git C:\projects\CodeOrchestra\livecoding_examples
+- cinst InnoSetup
 build_script:
-  - cd C:\projects\CodeOrchestra\colt-build
-  - copy gradle.properties.sample gradle.properties
-  - gradlew
-  - gradlew build
+- cd C:\projects\CodeOrchestra\colt-build
+- copy gradle.properties.sample gradle.properties
+- gradlew
+- gradlew build
+after_build:
+- mv build\distributions\COLT-1.3.1.exe colt-win-%PLATFORM%.exe
+artifacts:
+- path: colt-win-$(PLATFORM).exe
+  name: colt-win-$(PLATFORM)
+deploy:
+- provider: GitHub
+  release: $(appveyor_build_version)
+  auth_token:
+    secure: HK9ej9WVysHQHeTEQ/QTOJmh08xCtDQyDBy5uXWrWV/xROMNkQrTeQv1j2tYOxVw
+  artifact: /.*\.exe/
+  on:
+    branch: master
